@@ -36,6 +36,11 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  req.me = users[1];
+  next();
+});
+
 // Register View Engine (EJS)
 app.set('view engine', 'ejs');
 
@@ -54,6 +59,7 @@ app.post('/messages', (req, res) => {
   const message = {
     id,
     text: req.body.text,
+    userId: req.me.id,
   };
 
   messages[id] = message;
