@@ -13,6 +13,10 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Render a view
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.get('/', (req, res) => res.send('Received a GET HTTP method'));
+
+app.post('/', (req, res) => res.send('Received a POST HTTP method'));
+
+app.put('/', (req, res) => res.send('Received a PUT HTTP method'));
+
+app.delete('/', (req, res) => res.send('Received a DELETE HTTP method'));
