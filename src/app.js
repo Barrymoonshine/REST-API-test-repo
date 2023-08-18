@@ -1,6 +1,7 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import models from './models/index.js';
+import routes from './routes';
 
 // Set up Express app
 const app = express();
@@ -12,6 +13,9 @@ app.listen(3000);
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/session', routes.session);
+app.use('/users', routes.user);
+app.use('/messages', routes.message);
 
 app.use((req, res, next) => {
   req.context = {
